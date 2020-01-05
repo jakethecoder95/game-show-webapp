@@ -52,7 +52,7 @@ export default {
   async created() {
     try {
       this.match = await MatchService.getMatch();
-      const socket = openSocket("http://localhost:8000");
+      const socket = openSocket("https://game-show.herokuapp.com");
       socket.on("update-score", data => {
         const {
           teamIndex,
