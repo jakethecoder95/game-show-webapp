@@ -53,13 +53,18 @@ export default {
     try {
       this.match = await MatchService.getMatch();
       const socket = openSocket("https://game-show.herokuapp.com");
-      socket.on("update-score", data => {
-        const {
-          teamIndex,
-          team: { gameScore, totalScore }
-        } = data;
-        this.match.teams[teamIndex].gameScore = gameScore;
-        this.match.teams[teamIndex].totalScore = totalScore;
+      // const socket = openSocket("http://localhost:8000");
+      socket.on("match", data => {
+        const { action, teamIndex } = data;
+        if (action === "updateTeamScore") {
+          const { gameScore, totalScore } = data.team;
+          this.match.teams[teamIndex].gameScore = gameScore;
+          this.match.teams[teamIndex].totalScore = totalScore;
+        }
+        if (action == "updateTeamName") {
+          const { name } = data.team;
+          this.match.teams[teamIndex].name = name;
+        }
       });
     } catch (err) {
       // eslint-disable-next-line no-console
