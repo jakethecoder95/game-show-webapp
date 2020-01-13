@@ -20,14 +20,10 @@
       <h2 class="match-name">{{ match.title }} - Total Scores:</h2>
       <div class="row">
         <div class="total-score team-0">
-          <h2 class="total-score-header">
-            {{ match.teams[0].totalScore }}
-          </h2>
+          <h2 class="total-score-header">{{ match.teams[0].totalScore }}</h2>
         </div>
         <div class="total-score team-1">
-          <h2 class="total-score-header">
-            {{ match.teams[1].totalScore }}
-          </h2>
+          <h2 class="total-score-header">{{ match.teams[1].totalScore }}</h2>
         </div>
         <div class="total-score team-2">
           <h2 class="total-score-header">{{ match.teams[2].totalScore }}</h2>
@@ -64,6 +60,10 @@ export default {
         if (action == "updateTeamName") {
           const { name } = data.team;
           this.match.teams[teamIndex].name = name;
+        }
+        if (action === "newGame") {
+          const { updatedMatch } = data;
+          this.match = { ...updatedMatch };
         }
       });
     } catch (err) {
