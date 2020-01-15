@@ -82,6 +82,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.score-board {
+  padding-top: 50px;
+}
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -94,7 +97,7 @@ export default {
 }
 
 .game-title {
-  font-size: 4em;
+  font-size: 3em;
 }
 .team-score-header {
   font-size: 4em;

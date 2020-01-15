@@ -76,7 +76,10 @@ export default {
     },
     getLetterOccurrences(letter) {
       const phraseArr = this.phrases[this.phrasesPlayed].phrase.split("");
-      return phraseArr.reduce((cnt, l) => cnt + (l === letter), 0);
+      return phraseArr.reduce(
+        (cnt, l) => cnt + (l.toLowerCase() === letter.toLowerCase()),
+        0
+      );
     }
   },
   async created() {
@@ -111,15 +114,18 @@ export default {
 
 <style scoped>
 .wheel-of-blessings {
-  min-height: 500px;
-  margin-bottom: 100px;
+  background-color: #007467;
+  min-height: 400px;
+  width: 75%;
+  margin: 0 12.5% 100px 12.5%;
+  padding: 30px;
+  border-radius: 20px;
 }
 .letter-list {
   display: grid;
-  width: 70%;
-  margin: 0 15%;
+  width: 90%;
+  margin: 0 5%;
   grid-template-columns: repeat(11, 1fr);
-  grid-gap: 10px;
 }
 .game-over-alert {
   font-size: 6em;
