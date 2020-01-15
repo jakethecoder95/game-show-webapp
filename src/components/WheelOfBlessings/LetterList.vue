@@ -1,7 +1,6 @@
 <template>
   <div v-if="phrases.length > 0" class="wheel-of-blessings">
     <div v-if="phrasesPlayed < phrases.length">
-      {{ phrasesPlayed }}
       <h2>Catagory: {{ phrases[phrasesPlayed].catagory }}</h2>
       <div class="letter-list">
         <div v-for="(letter, i) in oranizeLetters()" v-bind:key="i">
