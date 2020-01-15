@@ -16,6 +16,8 @@
       </div>
     </div>
 
+    <LetterList v-bind:wheelOfBlessings="match.wheelOfBlessings" />
+
     <div class="total-scores-container">
       <h2 class="match-name">{{ match.title }} - Total Scores:</h2>
       <div class="row">
@@ -35,10 +37,14 @@
 
 <script>
 import MatchService from "../MatchService";
+import LetterList from "./WheelOfBlessings/LetterList";
 import openSocket from "socket.io-client";
 
 export default {
   name: "ScoreBoard",
+  components: {
+    LetterList
+  },
   data: function() {
     return {
       match: {},
@@ -84,13 +90,13 @@ export default {
 }
 
 .game-score-row {
-  height: 66vh;
+  /* height: 66vh; */
 }
 
 .game-title {
   font-size: 4em;
 }
 .team-score-header {
-  font-size: 6em;
+  font-size: 4em;
 }
 </style>
