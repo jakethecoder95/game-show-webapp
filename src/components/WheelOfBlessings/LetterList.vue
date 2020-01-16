@@ -133,6 +133,6 @@ export default {
   margin-bottom: 100px;
 }
 .recent-result {
-  font-size: 2em;
+  font-size: 4em;
 }
 </style>
