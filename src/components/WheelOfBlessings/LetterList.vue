@@ -116,9 +116,8 @@ export default {
 .wheel-of-blessings {
   background-color: #007467;
   min-height: 400px;
-  margin-right: 20px;
-  margin-bottom: 100px;
-  margin-left: 20px;
+  width: 75%;
+  margin: 0 12.5% 100px 12.5%;
   padding: 30px;
   border-radius: 20px;
 }
