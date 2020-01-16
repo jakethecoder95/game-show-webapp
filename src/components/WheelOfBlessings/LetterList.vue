@@ -15,6 +15,7 @@
       </div>
       <h2
         v-if="guessed.length > 0"
+        class="recent-result"
       >{{ guessed[guessed.length - 1] }}: {{ getLetterOccurrences(guessed[guessed.length -1]) }}</h2>
     </div>
     <div v-else>
@@ -130,5 +131,8 @@ export default {
 .game-over-alert {
   font-size: 6em;
   margin-bottom: 100px;
+}
+.recent-result {
+  font-size: 2em;
 }
 </style>
