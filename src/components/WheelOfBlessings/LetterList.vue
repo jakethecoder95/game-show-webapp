@@ -13,10 +13,12 @@
           </div>
         </div>
       </div>
-      <h2
-        v-if="guessed.length > 0"
-        class="recent-result"
-      >{{ guessed[guessed.length - 1] }}: {{ getLetterOccurrences(guessed[guessed.length -1]) }}</h2>
+      <div v-if="guessed.length > 0">
+        <h2
+          class="recent-result"
+        >{{ guessed[guessed.length - 1] }}: {{ getLetterOccurrences(guessed[guessed.length -1]) }}</h2>Guessed:
+        <span v-for="(l, i) in guessed" v-bind:key="i">{{ l }},&nbsp;</span>
+      </div>
     </div>
     <div v-else>
       <h1 class="game-over-alert">Game Over</h1>
