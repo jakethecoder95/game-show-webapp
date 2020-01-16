@@ -17,7 +17,9 @@
         <h2
           class="recent-result"
         >{{ guessed[guessed.length - 1] }}: {{ getLetterOccurrences(guessed[guessed.length -1]) }}</h2>Guessed:
-        <span v-for="(l, i) in guessed" v-bind:key="i">{{ l }},&nbsp;</span>
+        <h2>
+          <span v-for="(l, i) in guessed" v-bind:key="i">{{ l }},&nbsp;</span>
+        </h2>
       </div>
     </div>
     <div v-else>
