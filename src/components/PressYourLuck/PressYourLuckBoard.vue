@@ -11,7 +11,7 @@
         v-bind:key="i"
         v-bind:class="`box box${i+1} ${active === i ? 'active' : ''}`"
         v-bind:style="{ background: `url(/${box.img})`, display: i < 18 ? 'block' : 'none', 'background-position': box.pos, 'background-size': box.value >= 0 ? '810px 605px' : '100%' }"
-      ></div>
+      >{{ box.value}}</div>
 
       <div class="logo"></div>
 
@@ -88,6 +88,12 @@ export default {
       const happySound = document.getElementById("happySound");
       const sadSound = document.getElementById("sadSound");
       const timerSound = document.getElementById("timerSound");
+      // eslint-disable-next-line no-console
+      console.log(resultBox);
+      // eslint-disable-next-line no-console
+      console.log(this.active);
+      // eslint-disable-next-line no-console
+      console.log(this.boxValues);
       timerSound.pause();
       timerSound.currentTime = 0;
       clearInterval(this.incramentActiveInterval);
