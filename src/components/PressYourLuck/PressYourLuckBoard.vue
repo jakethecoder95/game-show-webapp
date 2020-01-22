@@ -73,6 +73,10 @@ export default {
       }
     },
     play() {
+      if (this.shuffling) {
+        console.log("already shuffling");
+        return;
+      }
       const timerSound = document.getElementById("timerSound");
       timerSound.loop = true;
       timerSound.play();
