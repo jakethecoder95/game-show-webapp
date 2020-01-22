@@ -74,6 +74,7 @@ export default {
     },
     play() {
       if (this.shuffling) {
+        // eslint-disable-next-line no-console
         console.log("already shuffling");
         return;
       }
