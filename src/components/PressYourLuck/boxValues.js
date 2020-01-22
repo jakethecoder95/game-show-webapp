@@ -44,14 +44,14 @@ export default [
   {
     value: 1500,
     text: "1500",
-    free_spin: "1",
+    free_spin: "0",
     img: "luck_board_low_res.jpg",
     pos: "-468px -251px"
   },
   {
     value: 1500,
     text: "1500",
-    free_spin: "1",
+    free_spin: "0",
     img: "luck_board_low_res.jpg",
     pos: "-468px -251px"
   },

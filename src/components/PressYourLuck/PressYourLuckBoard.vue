@@ -10,7 +10,7 @@
         v-for="(box, i) in boxValues"
         v-bind:key="i"
         v-bind:class="`box box${i+1} ${active === i ? 'active' : ''}`"
-        v-bind:style="{ background: `url(/${boxValues[i].img})`, display: i < 18 ? 'block' : 'none', 'background-position': boxValues[i].pos, 'background-size': boxValues[i].value >= 0 ? '810px 605px' : '100%' }"
+        v-bind:style="{ background: `url(/${box.img})`, display: i < 18 ? 'block' : 'none', 'background-position': box.pos, 'background-size': box.value >= 0 ? '810px 605px' : '100%' }"
       ></div>
 
       <div class="logo"></div>
