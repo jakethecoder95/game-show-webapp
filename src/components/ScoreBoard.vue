@@ -24,13 +24,13 @@
       <h2 class="match-name">{{ match.title }} - Total Scores:</h2>
       <div class="row">
         <div class="total-score team-0">
-          <h2 class="total-score-header">{{ match.teams[0].totalScore }}</h2>
+          <h2 class="total-score-header">{{ match.teams[0].totalScore + match.teams[0].gameScore }}</h2>
         </div>
         <div class="total-score team-1">
-          <h2 class="total-score-header">{{ match.teams[1].totalScore }}</h2>
+          <h2 class="total-score-header">{{ match.teams[1].totalScore + match.teams[1].gameScore }}</h2>
         </div>
         <div class="total-score team-2">
-          <h2 class="total-score-header">{{ match.teams[2].totalScore }}</h2>
+          <h2 class="total-score-header">{{ match.teams[2].totalScore + match.teams[2].gameScore }}</h2>
         </div>
       </div>
     </div>
