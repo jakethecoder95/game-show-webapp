@@ -17,8 +17,9 @@ export default {
 
 <style>
 body {
-  background: url(http://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg);
-  background-size: cover;
+  background: url(https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/f1rox-TCVWSX5DRVQ-Full-Image_GalleryBackground-en-US-1575406129397._SX1080_.jpg);
+  background-size: fill;
+  background-repeat: none;
   padding: 0;
   margin: 0;
 }

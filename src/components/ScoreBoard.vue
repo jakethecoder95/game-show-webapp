@@ -16,7 +16,9 @@
       </div>
     </div>
 
-    <LetterList v-bind:wheelOfBlessings="match.wheelOfBlessings" />
+    <UnmuteBtn />
+    <!-- <LetterList v-bind:wheelOfBlessings="match.wheelOfBlessings" /> -->
+    <PressYourLuckBoard v-bind:match="match" v-bind:socket="socket" />
 
     <div class="total-scores-container">
       <h2 class="match-name">{{ match.title }} - Total Scores:</h2>
@@ -37,33 +39,37 @@
 
 <script>
 import MatchService from "../MatchService";
-import LetterList from "./WheelOfBlessings/LetterList";
+// import LetterList from "./WheelOfBlessings/LetterList";
+import UnmuteBtn from "./UnmuteBtn";
+import PressYourLuckBoard from "./PressYourLuck/PressYourLuckBoard";
 import openSocket from "socket.io-client";
 
 export default {
   name: "ScoreBoard",
   components: {
-    LetterList
+    // LetterList,
+    PressYourLuckBoard,
+    UnmuteBtn
   },
   data: function() {
     return {
       match: {},
-      error: ""
+      error: "",
+      socket: openSocket("https://game-show.herokuapp.com")
+      // socket: openSocket("http://localhost:8000")
     };
   },
   async created() {
     try {
       this.match = await MatchService.getMatch();
-      const socket = openSocket("https://game-show.herokuapp.com");
-      // const socket = openSocket("http://localhost:8000");
-      socket.on("match", data => {
+      this.socket.on("match", data => {
         const { action, teamIndex } = data;
         if (action === "updateTeamScore") {
           const { gameScore, totalScore } = data.team;
           this.match.teams[teamIndex].gameScore = gameScore;
           this.match.teams[teamIndex].totalScore = totalScore;
         }
-        if (action == "updateTeamName") {
+        if (action === "updateTeamName") {
           const { name } = data.team;
           this.match.teams[teamIndex].name = name;
         }
