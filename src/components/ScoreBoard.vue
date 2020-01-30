@@ -17,9 +17,20 @@
     </div>
 
     <UnmuteBtn />
-    <!-- <LetterList v-bind:wheelOfBlessings="match.wheelOfBlessings" /> -->
-    <PressYourLuckBoard v-bind:match="match" v-bind:socket="socket" />
-
+    <LetterList
+      v-if="match.games[match.gamesPlayed] === 'WHEEL OF BLESSINGS'"
+      v-bind:wheelOfBlessings="match.wheelOfBlessings"
+    />
+    <PressYourLuckBoard
+      v-else-if="match.games[match.gamesPlayed] === 'Press Your Luck'"
+      v-bind:match="match"
+      v-bind:socket="socket"
+    />
+    <!-- <TheBibleIsRight
+      v-else-if="match.games[match.gamesPlayed] === 'The Bible\'s Right'"
+      v-bind:answers="answers"
+    />-->
+    <h2>{{ match.games[match.gamesPlayed].name }}</h2>
     <div class="total-scores-container">
       <h2 class="match-name">{{ match.title }} - Total Scores:</h2>
       <div class="row">
@@ -38,23 +49,27 @@
 </template>
 
 <script>
+import openSocket from "socket.io-client";
+
 import MatchService from "../MatchService";
 // import LetterList from "./WheelOfBlessings/LetterList";
 import UnmuteBtn from "./UnmuteBtn";
 import PressYourLuckBoard from "./PressYourLuck/PressYourLuckBoard";
-import openSocket from "socket.io-client";
+// import TheBibleIsRight from "./TheBibleIsRight/TheBibleIsRight";
 
 export default {
   name: "ScoreBoard",
   components: {
     // LetterList,
     PressYourLuckBoard,
+    // TheBibleIsRight,
     UnmuteBtn
   },
   data: function() {
     return {
       match: {},
       error: "",
+      answers: ["60\" 11'", "60\" 11'", "60\" 11'"],
       socket: openSocket("https://game-show.herokuapp.com")
       // socket: openSocket("http://localhost:8000")
     };
@@ -62,6 +77,8 @@ export default {
   async created() {
     try {
       this.match = await MatchService.getMatch();
+      // eslint-disable-next-line no-console
+      console.log(this.match);
       this.socket.on("match", data => {
         const { action, teamIndex } = data;
         if (action === "updateTeamScore") {
@@ -91,15 +108,9 @@ export default {
 .score-board {
   padding-top: 50px;
 }
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
-  align-items: center;
-}
 
 .game-score-row {
-  /* height: 66vh; */
+  height: 66vh;
 }
 
 .game-title {
