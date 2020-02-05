@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import openSocket from "socket.io-client";
 import Letter from "./Letter";
 
 export default {
@@ -38,7 +37,8 @@ export default {
     Letter
   },
   props: {
-    wheelOfBlessings: Object
+    wheelOfBlessings: Object,
+    socket: Object
   },
   data: function() {
     return {
@@ -92,9 +92,7 @@ export default {
       this.phrases = this.wheelOfBlessings.phrases;
       this.phrasesPlayed = this.wheelOfBlessings.phrasesPlayed;
       this.guessed = this.wheelOfBlessings.guessedLetters;
-      const socket = openSocket("https://game-show.herokuapp.com");
-      // const socket = openSocket("http://localhost:8000");
-      socket.on("wheelOfBlessings", data => {
+      this.socket.on("wheelOfBlessings", data => {
         const { action } = data;
         if (action === "addPhrase") {
           const { newPhrase } = data;

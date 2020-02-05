@@ -20,16 +20,24 @@
     <LetterList
       v-if="match.games[match.gamesPlayed] === 'WHEEL OF BLESSINGS'"
       v-bind:wheelOfBlessings="match.wheelOfBlessings"
+      v-bind:socket="socket"
     />
     <PressYourLuckBoard
       v-else-if="match.games[match.gamesPlayed] === 'Press Your Luck'"
       v-bind:match="match"
       v-bind:socket="socket"
     />
-    <!-- <TheBibleIsRight
+    <TheBibleIsRight
       v-else-if="match.games[match.gamesPlayed] === 'The Bible\'s Right'"
       v-bind:answers="answers"
-    />-->
+    />
+    <WhoWantsToBeAMillionaire
+      v-else-if="match.games[match.gamesPlayed] === 'Who Wants To Be A Millionaire'"
+      v-bind:millionaireDataProp="match.millionaireData"
+      v-bind:socket="socket"
+      v-bind:teamName="match.teams[match.millionaireData.activeTeam].name"
+    />
+
     <h2>{{ match.games[match.gamesPlayed].name }}</h2>
     <div class="total-scores-container">
       <h2 class="match-name">{{ match.title }} - Total Scores:</h2>
@@ -52,33 +60,35 @@
 import openSocket from "socket.io-client";
 
 import MatchService from "../MatchService";
-// import LetterList from "./WheelOfBlessings/LetterList";
+import LetterList from "./WheelOfBlessings/LetterList";
 import UnmuteBtn from "./UnmuteBtn";
 import PressYourLuckBoard from "./PressYourLuck/PressYourLuckBoard";
-// import TheBibleIsRight from "./TheBibleIsRight/TheBibleIsRight";
+import TheBibleIsRight from "./TheBibleIsRight/TheBibleIsRight";
+import WhoWantsToBeAMillionaire from "./Millionaire/WhoWantsToBeAMillionaire";
 
 export default {
   name: "ScoreBoard",
   components: {
-    // LetterList,
+    LetterList,
     PressYourLuckBoard,
-    // TheBibleIsRight,
-    UnmuteBtn
+    TheBibleIsRight,
+    UnmuteBtn,
+    WhoWantsToBeAMillionaire
   },
   data: function() {
     return {
       match: {},
       error: "",
-      answers: ["60\" 11'", "60\" 11'", "60\" 11'"],
-      socket: openSocket("https://game-show.herokuapp.com")
-      // socket: openSocket("http://localhost:8000")
+      socket: openSocket(
+        /localhost/.test(location.href)
+          ? "http://localhost:8000/"
+          : "https://game-show.herokuapp.com/"
+      )
     };
   },
   async created() {
     try {
       this.match = await MatchService.getMatch();
-      // eslint-disable-next-line no-console
-      console.log(this.match);
       this.socket.on("match", data => {
         const { action, teamIndex } = data;
         if (action === "updateTeamScore") {
@@ -110,7 +120,8 @@ export default {
 }
 
 .game-score-row {
-  height: 66vh;
+  /* height: 66vh; */
+  height: auto;
 }
 
 .game-title {

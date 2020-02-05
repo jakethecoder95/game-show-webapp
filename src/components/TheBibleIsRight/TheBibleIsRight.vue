@@ -8,7 +8,22 @@
 export default {
   name: "TheBiblesRight",
   props: {
-    answers: Array
+    answers: Array,
+    socket: Object
+  },
+  async created() {
+    try {
+      this.socket.on("theBiblesRight", data => {
+        const { action } = data;
+        if (action === "updateAnswers") {
+          const { answers } = data;
+          this.answers = answers;
+        }
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
   }
 };
 </script>

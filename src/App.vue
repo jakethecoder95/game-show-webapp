@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ScoreBoard from "./components/ScoreBoard.vue";
+import ScoreBoard from "./components/ScoreBoard";
 
 export default {
   name: "app",
@@ -18,10 +18,11 @@ export default {
 
 
 <style>
-/* Press Your Luck Background: https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/f1rox-TCVWSX5DRVQ-Full-Image_GalleryBackground-en-US-1575406129397._SX1080_.jpg */
+/* Press Your Luck Bg: https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/f1rox-TCVWSX5DRVQ-Full-Image_GalleryBackground-en-US-1575406129397._SX1080_.jpg */
+/* The Bible's Right Bg "/Price-Is-Right-Wallpaper-8.jpg" */
 body {
-  background: url("/Price-Is-Right-Wallpaper-8.jpg");
-  background-size: fill;
+  background: url(/millionaire-bg.png);
+  background-size: cover;
   background-repeat: none;
   padding: 0;
   margin: 0;
