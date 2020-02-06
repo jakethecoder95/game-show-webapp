@@ -108,6 +108,7 @@ export default {
           this.userAnswer = -1;
           this.timerRunning = false;
           this.hiddenOptions = [];
+          this.helpOptionsUsed = [];
           this.skipOptionUsed = false;
         }
         if (action === "toggleTimer") {
@@ -122,7 +123,7 @@ export default {
             case 1:
               this.fiftyFiftyOptionUsed();
               break;
-            default:
+            case 2:
               this.skipOptionUsed = true;
           }
         }
