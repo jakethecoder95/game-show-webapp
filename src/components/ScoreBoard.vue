@@ -128,6 +128,6 @@ export default {
   font-size: 3em;
 }
 .team-score-header {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 </style>
