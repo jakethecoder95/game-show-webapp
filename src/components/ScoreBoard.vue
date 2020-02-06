@@ -35,7 +35,8 @@
       v-else-if="match.games[match.gamesPlayed] === 'Who Wants To Be A Millionaire'"
       v-bind:millionaireDataProp="match.millionaireData"
       v-bind:socket="socket"
-      v-bind:teamName="match.teams[match.millionaireData.activeTeam].name"
+      v-bind:teamName="match.teams[match.millionaireData.activeTeam < match.teams.length ? match.millionaireData.activeTeam : match.teams.length - 1].name"
+      v-bind:teams="match.teams"
     />
 
     <h2>{{ match.games[match.gamesPlayed].name }}</h2>

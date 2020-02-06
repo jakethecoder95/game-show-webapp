@@ -79,7 +79,7 @@ export const questions = [
     },
     {
       question: "Which of the following was a judge?",
-      answer: "Laban",
+      answer: "Othniel",
       choices: ["Hezikia", "Zephenia", "Gabe", "Othniel"]
     },
     {
@@ -118,7 +118,7 @@ export const questions = [
       choices: [
         "the fish in the sea",
         "the grass in the fields",
-        "the stars in the galaxy",
+        "the stars in the solar system",
         "the sand on the seashore"
       ]
     },
@@ -193,7 +193,7 @@ export const questions = [
       choices: ["Philemon", "Jude", "2 John", "2 Corinthians"]
     },
     {
-      question: "Who were the first apostles called to follow Jesus?",
+      question: "Who were the first disciples called to follow Jesus?",
       answer: "Peter and Andrew",
       choices: [
         "James and John",

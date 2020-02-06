@@ -1,5 +1,5 @@
 <template>
-  <div class="millionair-game-board">
+  <div class="millionair-game-board" v-if="millionaireData.activeTeam < teams.length">
     <div class="left-side">
       <div class="game-info-board">
         <GameInfoBoard
@@ -29,6 +29,13 @@
       />
     </div>
   </div>
+  <div v-else class="winning-team">
+    <h1>Game Over</h1>
+    <h2>
+      Team
+      <b class="winning-team-name">{{ getWinningTeamName() }}</b> Wins!
+    </h2>
+  </div>
 </template>
 
 <script>
@@ -43,7 +50,8 @@ export default {
   props: {
     millionaireDataProp: Object,
     socket: Object,
-    teamName: String
+    teamName: String,
+    teams: Array
   },
   data: function() {
     return {
@@ -85,6 +93,20 @@ export default {
         );
       }
     };
+  },
+  methods: {
+    getWinningTeamName() {
+      let topScore = -1,
+        winningTeam = "";
+      for (let team of this.teams) {
+        const teamTotalScore = team.gameScore + team.totalScore;
+        if (teamTotalScore > topScore) {
+          topScore = teamTotalScore;
+          winningTeam = team.name;
+        }
+      }
+      return winningTeam;
+    }
   },
   async created() {
     this.millionaireData = this.millionaireDataProp;
@@ -158,5 +180,8 @@ export default {
 }
 .score-list-board {
   background: navy;
+}
+.winning-team-name {
+  color: rgb(0, 184, 0);
 }
 </style>
